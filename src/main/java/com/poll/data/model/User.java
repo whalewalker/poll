@@ -4,8 +4,6 @@ import lombok.Data;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
@@ -20,26 +18,19 @@ import java.util.Set;
                 "email"
         }),
 })
-public class User {
+public class User extends DateAudit{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @NotBlank(message = "name cannot be blank")
-    @Size(max = 40)
     private String name;
 
-    @NotBlank(message = "username cannot be blank")
     @Size(max = 15)
     private String username;
 
     @NaturalId
-    @NotBlank(message = "email cannot be blank")
     @Size(max = 40)
-    @Email
     private String email;
 
-    @NotBlank(message = "password cannot be blank")
     @Size(max = 100)
     private String password;
 
